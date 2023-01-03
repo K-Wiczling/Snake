@@ -1,0 +1,15 @@
+import Snake from "./snake";
+import CanvasMenager from "./canvasMenager";
+import ControlsMenager from "./controlsMenager";
+
+export default class GameMenager {
+  snake: Snake = new Snake();
+  canvas: CanvasMenager = new CanvasMenager();
+  controls: ControlsMenager = new ControlsMenager();
+  constructor() {
+    console.log(this.snake);
+    console.log(this.canvas);
+    console.log(this.controls);
+    
+  }
+}
