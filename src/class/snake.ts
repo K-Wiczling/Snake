@@ -5,7 +5,7 @@ export default class Snake {
   constructor() {
   }
   move(directionPoint: Point) {
-    const snakeFace: Point = structuredClone(this.body[0]);
+    const snakeFace: Point = this.body[0];
     snakeFace.addTo(directionPoint);
     this.body.pop();
     this.body.unshift(snakeFace);
