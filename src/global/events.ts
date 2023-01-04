@@ -1,0 +1,1 @@
+export default direction = 'top' | 'bottom' | 'left' | 'right';
