@@ -7,7 +7,7 @@ class CanvasMenager {
   height = document.documentElement.clientHeight;
 
   canvas = document.createElement('canvas');
-  canvasHolder: any ;
+  canvasHolder: HTMLElement = document.createElement('div') ;
 
   viewportWidth: number = document.documentElement.clientWidth;
   viewportHeight: number = document.documentElement.clientHeight;
