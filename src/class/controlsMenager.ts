@@ -1,9 +1,12 @@
 import direction from '../global/direction';
 export default class ControlsMenager {
 
-  //touchStart: any = addEventListener()
-  //touchEnd: any = addEventListener()
+
   currentDirection: direction = "left";
+  constructor() {
+    // const touchStart: any = addEventListener()
+    // const touchEnd: any = addEventListener()
+  }
 
   left = new CustomEvent('direction', {
     dir: ditection = 'left',
@@ -17,26 +20,21 @@ export default class ControlsMenager {
   bottom = new CustomEvent('direction', {
     dir: ditection = 'bottom',
   });
+  // Dispatch events base one the calculated input from touchscreen or keys pressed
 
-  emitDirection(newDirection: direction) {
-
-    // add an appropriate event listener
-    //obj.addEventListener('animalfound', (e) => console.log(e.detail.name);
-
-  }
   left() {
     this.dispatchEvent(left);
   }
-  
+
   right() {
     this.dispatchEvent(right);
 
   }
-  
+
   top() {
     this.dispatchEvent(top);
   }
-  
+
   bottom() {
     this.dispatchEvent(bottom);
   }

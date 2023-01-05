@@ -1,8 +1,11 @@
 import Point from "./point";
-export default class CanvasMenager {
-  viewportWidth: number;
+
+class CanvasMenager {
+  
+  viewportWidth: number = 0;
   viewportHeight: number = 0;
   gridSize: number = 0;
+  
   constructor(viewportWidth: number, viewportHeight: number, gridSize: number) {
     this.viewportWidth = viewportWidth;
     this.viewportHeight = viewportHeight;
@@ -18,5 +21,10 @@ export default class CanvasMenager {
   clearCanvas() {
 
   }
+  // Calculate canvas dimentions & grid size base on the viewport 
+  calculateCanvas () {
+    
+  }
 
 }
+export default Point;
