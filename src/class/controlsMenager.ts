@@ -1,4 +1,4 @@
-import direction from '../global/direction';
+import {direction} from '../global/events';
 export default class ControlsMenager {
 
 
@@ -6,37 +6,46 @@ export default class ControlsMenager {
   constructor() {
     // const touchStart: any = addEventListener()
     // const touchEnd: any = addEventListener()
+    this.left();
   }
 
-  left = new CustomEvent('direction', {
-    dir: ditection = 'left',
+  leftEvent = new CustomEvent('direction', {
+    detail: {
+      dir: 'left'
+    }
   });
-  right = new CustomEvent('direction', {
-    dir: ditection = 'right',
+  rightEvent = new CustomEvent('direction', {
+    detail: {
+      dir: 'right'
+    }
   });
-  top = new CustomEvent('direction', {
-    dir: ditection = 'top',
+  topEvent = new CustomEvent('direction', {
+    detail: {
+      dir: 'top'
+    }
   });
-  bottom = new CustomEvent('direction', {
-    dir: ditection = 'bottom',
+  bottomEvent = new CustomEvent('direction', {
+    detail: {
+      dir: 'bottom'
+    }
   });
   // Dispatch events base one the calculated input from touchscreen or keys pressed
 
   left() {
-    this.dispatchEvent(left);
+    dispatchEvent(this.leftEvent);
   }
 
   right() {
-    this.dispatchEvent(right);
+    dispatchEvent(this.rightEvent);
 
   }
 
   top() {
-    this.dispatchEvent(top);
+    dispatchEvent(this.topEvent);
   }
 
   bottom() {
-    this.dispatchEvent(bottom);
+    dispatchEvent(this.bottomEvent);
   }
 
   checkSwipe() {

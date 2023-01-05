@@ -5,19 +5,27 @@ import ControlsMenager from "./controlsMenager";
 // Control the whole game
 export default class GameMenager {
   snake: Snake = new Snake();
-  canvas: CanvasMenager = new CanvasMenager(1, 1, 1);
+  canvas: CanvasMenager = new CanvasMenager();
   controls: ControlsMenager = new ControlsMenager();
   updateing: any;
+  controlsListener: any;
 
   constructor() {
-    controls.addEventListener('direction', this.snake.move(e.dir.direcrion));
+    this.controlsListener = addEventListener('direction', (e) => {
+      const ev = e as CustomEvent;
+
+      this.snake.move(ev.detail.dir);
+    });
   }
-  gameLoop() {}
+  gameLoop() { }
 
   setup() {
-    this.updateing = setInterval(gameLoop, 1000 / 30);
+    this.updateing = setInterval(this.gameLoop, 1000 / 30);
   }
   endGame() {
-    clearInterval(this.updatein);
+    clearInterval(this.updateing);
+  }
+  init(canvasRef: any) {
+    this.canvas.setupCanvas(canvasRef);
   }
 }

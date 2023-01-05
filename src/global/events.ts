@@ -1,1 +1,1 @@
-export default direction = 'top' | 'bottom' | 'left' | 'right';
+export type direction = 'top' | 'bottom' | 'left' | 'right';

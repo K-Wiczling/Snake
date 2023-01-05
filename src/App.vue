@@ -1,16 +1,29 @@
 <template>
-  <div id="app">
+  <div ref="canvasHolder" >
+    
   </div>
 </template>
 
 <script lang="ts">
+
+import { defineComponent } from "vue";
 import GameMenager from './class/gameMenager';
-let gm = new GameMenager();
-export default {
+
+export default defineComponent ({
   name: 'App',
   components: {
+  },
+  data() {
+    return {
+      gm: new GameMenager()
+    }
+  },
+  methods: {
+  },
+  mounted () {
+    this.gm.init(this.$refs.canvasHolder);
   }
-}
+})
 </script>
 
 <style>
