@@ -6,7 +6,7 @@ export default class ControlsMenager {
   constructor() {
     // const touchStart: any = addEventListener()
     // const touchEnd: any = addEventListener()
-    this.left();
+    // this.left();
   }
 
   leftEvent = new CustomEvent('direction', {

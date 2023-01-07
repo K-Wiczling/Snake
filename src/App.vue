@@ -1,5 +1,5 @@
 <template>
-  <div ref="canvasHolder" >
+  <div ref="canvasHolder" id="canvasHolder">
     
   </div>
 </template>
@@ -22,11 +22,21 @@ export default defineComponent ({
   },
   mounted () {
     this.gm.init(this.$refs.canvasHolder);
+    this.gm.test();
   }
 })
 </script>
 
 <style>
+canvas {
+  border: 1px solid black;
+}
+#canvasHolder {
+  /* border: 1px solid red; */
+
+  width: 90vw;
+  height: 90vh;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

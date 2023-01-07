@@ -5,9 +5,11 @@ export default class Snake {
   body: Array < Point > = [];
 
   constructor() {
-    this.body[0] = new Point(1,1);
-    let x : direction = 'left';
-    this.move(x)
+    this.body.push( new Point(4,1));
+    this.body.push( new Point(4,2));
+    this.body.push( new Point(4,3));
+    this.body.push( new Point(3,3));
+  
   }
   move(dir: direction) {
     let directionPoint: Point;

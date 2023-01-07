@@ -14,7 +14,6 @@ export default class GameMenager {
     
     this.controlsListener = addEventListener('direction', (e) => {
       const ev = e as CustomEvent;
-      
       this.snake.move(ev.detail.dir);
     });
 
@@ -28,7 +27,10 @@ export default class GameMenager {
     clearInterval(this.updateing);
   }
   init(canvasRef: any) {
-    this.canvas = new CanvasMenager();
-    this.canvas.setupCanvas(canvasRef);
+    this.canvas = new CanvasMenager(canvasRef);
+    // this.canvas.setupCanvas(canvasRef);
+  }
+  test() {
+    this.canvas.drawUpdate(this.snake.body);
   }
 }
