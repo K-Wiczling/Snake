@@ -2,6 +2,7 @@
   <div ref="canvasHolder" id="canvasHolder">
     
   </div>
+  <button @click="move">move</button>
 </template>
 
 <script lang="ts">
@@ -19,21 +20,27 @@ export default defineComponent ({
     }
   },
   methods: {
+    move(){
+      this.gm.gameLoop();
+    }
   },
   mounted () {
     this.gm.init(this.$refs.canvasHolder);
-    this.gm.test();
+    this.gm.setup();
   }
 })
 </script>
 
 <style>
+*{
+  padding: 0;
+  margin: 0 ;
+}
 canvas {
   border: 1px solid black;
+  margin: auto;
 }
 #canvasHolder {
-  /* border: 1px solid red; */
-
   width: 90vw;
   height: 90vh;
 }
@@ -43,6 +50,7 @@ canvas {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
 }
+
 </style>

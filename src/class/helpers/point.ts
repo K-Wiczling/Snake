@@ -16,7 +16,7 @@ export default class Point {
     this.y += addingPoint.y;
   }
   changePoint(x: number, y: number) {
-    this.x = y;
+    this.x = x;
     this.y = y;
   }
 }

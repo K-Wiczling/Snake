@@ -1,12 +1,12 @@
-import Point from "./point";
+import Point from "./helpers/point";
 export default class Food {
-      position: Point = new Point(0, 0);
+      position: Point = new Point(15, 20);
 
   constructor() {
   }
-  generatePosition(xRange: number, yRange: number) {
-    let x = Math.floor(Math.random() * xRange);
-    let y = Math.floor(Math.random() * yRange);
+  generatePosition(range: number) {
+    let x = Math.floor(Math.random());
+    let y = Math.floor(Math.random() );
     this.position.changePoint(x, y);
   }
 }
