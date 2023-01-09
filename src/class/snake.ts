@@ -2,10 +2,11 @@ import Point from './helpers/point';
 import { direction } from '../global/events';
 export default class Snake {
 
-  body: Array<Point> = [];
+  body: Array < Point > = [];
   currentDirection: direction = 'left';
   gameSize: number = 40;
   isSnakeAlive: boolean = true;
+  toGrow: boolean = false;
 
   constructor(gameSize: number) {
 
@@ -19,10 +20,13 @@ export default class Snake {
 
   }
   // Increas size of the snake by one 
-  eat(point: Point) {
-    const newHead = new Point(point.x, point.y);
+  eat() {
+    const newHead = new Point(this.body[0].x, this.body[0].y);
+    newHead.addTo(this.createDirection());
     this.body.unshift(newHead);
-    
+  }
+  hungry(){
+    this.toGrow = true;
   }
   // Change movement direction of the snake accordingly to the input
   changeDirection(dir: direction) {
@@ -44,11 +48,36 @@ export default class Snake {
 
   }
   // Move snake in the currentDirection by one 
-  move(food: Point): boolean {
-    
+  update() {
+    if (this.toGrow) {
+      this.eat()
+    } else {
+      this.move();
+    }
+    this.checkForTail();
+    this.checkForWalls();
+
+  }
+  // Move snake by one grid pice
+
+  move() {
+    let directionPoint = createDirection();
+
+    const snakeFace: Point = new Point(this.body[0].x, this.body[0].y)
+
+    snakeFace.addTo(directionPoint);
+
+    // Iterate through snake body form the back
+    // and change positon of each body part to the next one
+    for (let i: number = this.body.length - 1; i <= 0; i--) {
+      this.body[i] = Object.assign(this.body[i - 1]);
+    }
+    this.body.pop();
+  }
+  // Create direction point base on currntDirectio
+  createDirection(): Point {
     let directionPoint: Point = new Point(0, 0);
 
-    // Create direction point base on currntDirection 
     switch (this.currentDirection) {
       case 'top':
         directionPoint.changePoint(0, -1);
@@ -66,24 +95,6 @@ export default class Snake {
         directionPoint.changePoint(-1, 0);
         break;
     }
-    
-    // Move snake by one grid pice
-    const snakeFace: Point = new Point(this.body[0].x, this.body[0].y)
-    snakeFace.addTo(directionPoint);
-    if(snakeFace.isEquel(food) ){
-      this.eat(food);
-      return true;
-    }
-    // Iterate through snake body form the back
-    // and change positon of each body part to the next one
-    for (let i: number = this.body.length - 1; i <= 0; i--) {
-      this.body[i] = Object.assign(this.body[i - 1]);
-    }
-    this.body.pop();
-    this.body.unshift(snakeFace);
-
-    this.checkForTail();
-    this.checkForWalls();
-    return false;
+    return directionPoint;
   }
 }

@@ -20,17 +20,20 @@ export default class GameMenager {
       this.snake.changeDirection(ev.detail.dir);
     });
   }
-  gameLoop() { 
-    if(this.snake.isSnakeAlive){
-      if(this.snake.move(this.food.position)){
+  gameLoop() {
+    if (this.snake.isSnakeAlive) {
+      this.snake.update()
+      this.canvas.drawUpdate(this.snake.body, this.food.position);
+      
+      if (this.snake.body[0].isEquel(this.food.position)) {
         this.food.generatePosition(this.gameSize);
+        this.snake.hungry();
       }
-      this.canvas.drawUpdate(this.snake.body, this.food.position );
     }
   }
-  
+
   setup() {
-    this.updateing = setInterval(() => {this.gameLoop()}, 1000 / 2);
+    this.updateing = setInterval(() => { this.gameLoop() }, 1000 / 2);
   }
   endGame() {
     clearInterval(this.updateing);
