@@ -2,7 +2,8 @@
   <div ref="canvasHolder" id="canvasHolder">
     
   </div>
-  <button @click="move">startGame</button>
+  <button @click="startGame">startGame</button>
+  <span>{{gm.score.score}}</span>
 </template>
 
 <script lang="ts">
@@ -16,7 +17,8 @@ export default defineComponent ({
   },
   data() {
     return {
-      gm: new GameMenager()
+      gm: new GameMenager(),
+      score: 0
     }
   },
   methods: {

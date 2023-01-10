@@ -5,22 +5,23 @@ class Color {
     blue: number;
 
     constructor(red: number, green: number, blue: number) {
-
         
-        if(red > 255) red = 255;
-        if(red < 0) red = 0
-
-        if(green > 255) green = 255;
-        if(green < 0) green = 0
-
-        if(blue > 255) blue = 255;
-        if(blue < 0) blue = 0
+        this.checkNumbers(red);
+        this.checkNumbers(green);
+        this.checkNumbers(blue);
 
         this.red = red;
         this.green = green;
         this.blue = blue
     }
+    
+    // Make sure that numbers are in the range of RGB 
+    checkNumbers (color:number) {
+        if(color > 255) color = 255;
+        if(color < 0) color = 0;
+    }
 
+    // Get the color hash from the indyvidual RGB variables
     getColorHash (): string {
         let r: string = this.red.toString(16)
         let g: string = this.green.toString(16)

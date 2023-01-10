@@ -3,19 +3,29 @@ import { direction } from '../global/events';
 class ControlsMenager {
 
   currentDirection: direction = "left";
-  keysPress: any = addEventListener('keyup', (e) => {
-    this.checkKeys(e);
-  });
-  touchStart: any = addEventListener('touchstart', (e) => {
-    this.chceckSwipeStart(e);
-  });
-  touchEnd: any = addEventListener('touchend', (e) => {
-    this.checkSwipeEnd(e);
-  });
-  constructor() {
-    // const touchStart: any = addEventListener()
-    // const touchEnd: any = addEventListener()
 
+  keysPress: any;
+  touchStart: any;
+  touchEnd: any;
+
+  StartTouchPosX: any = null;
+  StartTouchPosY: any = null;
+
+  constructor() {
+    this.init();
+  }
+
+  // Initialize 
+  init() {
+    this.keysPress = addEventListener('keyup', (e) => {
+      this.checkKeys(e.code);
+    });
+    this.touchStart = addEventListener('touchstart', (e) => {
+      this.checkSwipeStart(e);
+    });
+    this.touchEnd = addEventListener('touchend', (e) => {
+      this.checkSwipeEnd(e);
+    });
   }
 
   leftEvent = new CustomEvent('direction', {
@@ -38,8 +48,8 @@ class ControlsMenager {
       dir: 'bottom'
     }
   });
-  // Dispatch events base one the calculated input from touchscreen or keys pressed
 
+  // Dispatch events base one the calculated input from touchscreen or keys pressed
   left() {
     dispatchEvent(this.leftEvent);
   }
@@ -57,17 +67,58 @@ class ControlsMenager {
     dispatchEvent(this.bottomEvent);
   }
 
-  checkSwipeStart() {
-
+  // Calculate swipeing
+  //Get the strat position of the touch and store it to later use
+  checkSwipeStart (e: any) {
+    this.StartTouchPosX = e.touches[0].clientX;
+    this.StartTouchPosY = e.touches[0].clientY;
   }
-  checkSwipeEnd() {
-    
+  //Get the end position of the touch
+  checkSwipeEnd (e: any) {
+    const x = e.changedTouches[0].clientX;
+    const y = e.changedTouches[0].clientY;
+    this.calcSwipeDirection(x - this.StartTouchPosX, y - this.StartTouchPosY);
   }
-  checkKeys() {
+  //Calculate swipe direction
+  calcSwipeDirection (x:number, y: number) {
+    let nx = Math.abs(x);
+    let ny = Math.abs(y);
 
+    if (nx >= ny) {
+      if (x > 0) {
+        //Swipe right
+        this.right();
+      } else {
+        //Swipe left
+        this.left();
+      }
+    } else {
+      if (y > 0) {
+        //Swipe down
+        this.bottom();
+      } else {
+        //Swipe top
+        this.top();
+      }
+    }
   }
-  emitKeyOk() {
 
+
+  // Check witch key has been pressed
+  checkKeys(key: string) {
+    switch (key) {
+      case 'ArrowUp': this.top();
+        break;
+      case 'ArrowDown': this.bottom();
+        break;
+      case 'ArrowRight': this.right();
+        break;
+      case 'ArroeLeft': this.left();
+        break;
+
+      default: this.left();
+        break;
+    }
   }
 
 }
