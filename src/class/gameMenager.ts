@@ -3,7 +3,7 @@ import CanvasMenager from "./canvasMenager";
 import ControlsMenager from "./controlsMenager";
 import { direction } from "@/global/events";
 import Food from "./food";
-import Points from "./points";
+import Score from "./score";
 
 // Control the whole game
 export default class GameMenager {
@@ -14,8 +14,8 @@ export default class GameMenager {
   updateing: any;
   controlsListener: any;
   gameSize: number = 40;
-  points: Points = new Points();
-  
+  score: Score = new Score();
+
   constructor() {
     this.controlsListener = addEventListener('direction', (e) => {
       const ev = e as CustomEvent;
@@ -26,7 +26,7 @@ export default class GameMenager {
     if (this.snake.isSnakeAlive) {
       this.snake.update()
       this.canvas.drawUpdate(this.snake.body, this.food.position);
-      
+
       if (this.snake.body[0].isEquel(this.food.position)) {
         this.points.addPoints();
         this.food.generatePosition(this.gameSize);
@@ -36,6 +36,9 @@ export default class GameMenager {
   }
 
   setup() {
+    
+  }
+  start() {
     this.updateing = setInterval(() => { this.gameLoop() }, 1000 / 2);
   }
   endGame() {
@@ -43,7 +46,8 @@ export default class GameMenager {
   }
   init(canvasRef: any) {
     this.canvas = new CanvasMenager(canvasRef, this.gameSize);
-    this.snake = new Snake(this.gameSize);
+    this.snake = new Snake(this.gameSize)
+    this.setup();
   }
 
 }

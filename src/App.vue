@@ -2,7 +2,7 @@
   <div ref="canvasHolder" id="canvasHolder">
     
   </div>
-  <button @click="move">move</button>
+  <button @click="move">startGame</button>
 </template>
 
 <script lang="ts">
@@ -20,13 +20,12 @@ export default defineComponent ({
     }
   },
   methods: {
-    move(){
-      this.gm.gameLoop();
+    startGame(){
+      this.gm.start();
     }
   },
   mounted () {
     this.gm.init(this.$refs.canvasHolder);
-    this.gm.setup();
   }
 })
 </script>
