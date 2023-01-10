@@ -1,12 +1,21 @@
-import {direction} from '../global/events';
-export default class ControlsMenager {
+import { direction } from '../global/events';
 
+class ControlsMenager {
 
   currentDirection: direction = "left";
+  keysPress: any = addEventListener('keyup', (e) => {
+    this.checkKeys(e);
+  });
+  touchStart: any = addEventListener('touchstart', (e) => {
+    this.chceckSwipeStart(e);
+  });
+  touchEnd: any = addEventListener('touchend', (e) => {
+    this.checkSwipeEnd(e);
+  });
   constructor() {
     // const touchStart: any = addEventListener()
     // const touchEnd: any = addEventListener()
-    // this.left();
+
   }
 
   leftEvent = new CustomEvent('direction', {
@@ -48,8 +57,11 @@ export default class ControlsMenager {
     dispatchEvent(this.bottomEvent);
   }
 
-  checkSwipe() {
+  checkSwipeStart() {
 
+  }
+  checkSwipeEnd() {
+    
   }
   checkKeys() {
 
@@ -59,3 +71,4 @@ export default class ControlsMenager {
   }
 
 }
+export default ControlsMenager;

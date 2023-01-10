@@ -3,7 +3,7 @@ import CanvasMenager from "./canvasMenager";
 import ControlsMenager from "./controlsMenager";
 import { direction } from "@/global/events";
 import Food from "./food";
-import Points form "./points";
+import Points from "./points";
 
 // Control the whole game
 export default class GameMenager {
