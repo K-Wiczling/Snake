@@ -27,7 +27,7 @@ class Score {
 
   // Check if player get enough points to speed up
   levelUp() {
-    if (this.levelScore >= this.getNextPointToLevelUp(this.scoreMulitplayer))
+    if (this.levelScore >= this.getNextPointToLevelUp(this.scoreMulitplayer +4))
       this.scoreMulitplayer++;
   }
 
