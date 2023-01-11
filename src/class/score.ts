@@ -17,7 +17,7 @@ class Score {
     this.levelUp();
   }
 
-  // Set values to the initial 
+  // Set values to the initial
   reset() {
     this.score = 0;
     this.levelScore = 0;
