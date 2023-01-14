@@ -16,8 +16,9 @@ export default class Food {
   
   // Generating new random position for the food
   generatePosition() {
-    let x = Math.floor(Math.random());
-    let y = Math.floor(Math.random());
-    this.position.changePoint(15, 20);
+    let x = Math.floor(Math.random() * (this.range-1));
+    let y = Math.floor(Math.random() * (this.range-1));
+
+    this.position.changePoint(x, y);
   }
 }

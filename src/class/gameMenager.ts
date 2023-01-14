@@ -19,7 +19,9 @@ export default class GameMenager {
 
   // Simple Variables
   updateing: any;
-  speed = 250;
+  startRefreshTime: number = 250; // 250[ms]
+  speedMultiplayer: number = 20;
+  minRefreshTimer: number = 80; // 80 [ms] 
   controlsListener: any;
   gameSize: number = 40;
 
@@ -70,19 +72,21 @@ export default class GameMenager {
   start() {
     this.setup();
     this.gameLoop();
+    this.snake.isSnakeAlive = true;
   }
 
   // Call whene Snake will hit the wall or tail
   endGame() {
     clearTimeout(this.updateing);
+    dispatchEvent(new CustomEvent('endGame'));
   }
 
   // Change speed accordingly to the formula && use score
   speedUpdate (): number {
-    if((this.speed - this.score.scorePerEat*15 > 100)){
-      return this.speed - this.score.scorePerEat*15;
+    if((this.startRefreshTime - this.score.scorePerEat*15 > this.minRefreshTimer)){
+      return this.startRefreshTime - this.score.scorePerEat*this.speedMultiplayer;
     }
-    return 100;
+    return this.minRefreshTimer;
   }
 
 

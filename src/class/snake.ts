@@ -5,7 +5,7 @@ export default class Snake {
   body: Array<Point> = [];
   currentDirection: direction = 'left';
   gameSize: number = 40;
-  isSnakeAlive: boolean = true;
+  isSnakeAlive: boolean = false;
   toGrow: boolean = false;
 
   constructor(gameSize: number) {
@@ -25,7 +25,10 @@ export default class Snake {
     this.body.push(new Point(21, 20));
     this.body.push(new Point(22, 20));
     this.body.push(new Point(23, 20));
+
+    this.currentDirection = 'left';
   }
+  
   // Increas size of the snake by one 
   eat() {
     const newHead = new Point(this.body[0].x, this.body[0].y);
@@ -33,6 +36,8 @@ export default class Snake {
     this.body.unshift(newHead);
     this.toGrow = false;
   }
+
+  // Set toGrow true for snake to grow on the next  update
   hungry() {
     this.toGrow = true;
   }
@@ -66,7 +71,7 @@ export default class Snake {
     }
 
   }
-  // Move snake in the currentDirection by one 
+  // Move snake in the currentDirection by one & chack for colisions
   update() {
     if (this.toGrow) {
       this.eat()
@@ -76,8 +81,8 @@ export default class Snake {
     this.checkForTail();
     this.checkForWalls();
   }
-  // Move snake by one grid pice
 
+  // Move snake by one grid pice
   move() {
     let directionPoint = this.createDirection();
 

@@ -26,7 +26,7 @@ class Score {
 
   // Check if player get enough points to speed up
   levelUp() {
-    if (this.levelScore >= this.getNextPointToLevelUp(this.scorePerEat +4)){
+    if (this.levelScore >= this.getNextPointToLevelUp(this.scorePerEat +4) && this.scorePerEat < 10){
       this.scorePerEat++;
       this.levelScore = 0;
     }
