@@ -3,7 +3,7 @@
     
   </div>
   <button @click="startGame">startGame</button>
-  <span>{{gm.score.score}}</span>
+  <span>{{gm.score.score}}/{{ gm.score.levelScore }}</span>
 </template>
 
 <script lang="ts">

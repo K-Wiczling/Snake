@@ -19,7 +19,7 @@ export default class Snake {
 
     // Clear snake
     this.body = [];
-    
+
     // Initial body of the snake
     this.body.push(new Point(20, 20)); //Head
     this.body.push(new Point(21, 20));
@@ -59,8 +59,9 @@ export default class Snake {
   // Check if snake hit his tail
   checkForTail() {
 
-    for (let i: number = 1; i >= (this.body.length - 1); i++) {
-      if (this.body[0].isEquel(this.body[i]))
+    
+    for (let i: number = 1; i <= (this.body.length - 1); i++) {
+      if (this.body[0].isEquel(this.body[i])) 
         this.isSnakeAlive = false;
     }
 
@@ -74,7 +75,6 @@ export default class Snake {
     }
     this.checkForTail();
     this.checkForWalls();
-
   }
   // Move snake by one grid pice
 

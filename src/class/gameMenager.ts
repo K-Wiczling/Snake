@@ -19,6 +19,7 @@ export default class GameMenager {
 
   // Simple Variables
   updateing: any;
+  speed = 250;
   controlsListener: any;
   gameSize: number = 40;
 
@@ -47,6 +48,8 @@ export default class GameMenager {
     this.food.generatePosition();
     this.score.reset();
   }
+
+  // Calculations done each frame
   gameLoop() {
     if (this.snake.isSnakeAlive) {
       this.snake.update()
@@ -57,19 +60,31 @@ export default class GameMenager {
         this.food.generatePosition();
         this.snake.hungry();
       }
+      this.updateing = setTimeout(() => { this.gameLoop() }, this.speedUpdate() );
+    } else {
+      this.endGame();
     }
   }
 
   // Start playing the game
   start() {
     this.setup();
-    this.updateing = setInterval(() => { this.gameLoop() }, 1000 / 4);
+    this.gameLoop();
   }
 
   // Call whene Snake will hit the wall or tail
   endGame() {
-    clearInterval(this.updateing);
+    clearTimeout(this.updateing);
   }
+
+  // Change speed accordingly to the formula && use score
+  speedUpdate (): number {
+    if((this.speed - this.score.scorePerEat*15 > 100)){
+      return this.speed - this.score.scorePerEat*15;
+    }
+    return 100;
+  }
+
 
 
 }

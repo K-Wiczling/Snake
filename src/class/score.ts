@@ -1,18 +1,18 @@
 class Score {
   score: number = 0;
   levelScore: number = 0;
-  scoreMulitplayer: number = 1;
+  scorePerEat: number = 1;
 
   // Add points to the score
   addPoints() {
     if(this.score === 0 ) {
-      this.score++;
-      this.levelScore++;
+      this.score = 1;
+      this.levelScore = 1;
       return;
     }
 
-    this.score += (this.score * this.scoreMulitplayer);
-    this.levelScore += (this.score * this.scoreMulitplayer);
+    this.score += this.scorePerEat;
+    this.levelScore += this.scorePerEat;
 
     this.levelUp();
   }
@@ -21,14 +21,15 @@ class Score {
   reset() {
     this.score = 0;
     this.levelScore = 0;
-    this.scoreMulitplayer = 1;
-    console.log(this.getNextPointToLevelUp(13));
+    this.scorePerEat = 1;
   }
 
   // Check if player get enough points to speed up
   levelUp() {
-    if (this.levelScore >= this.getNextPointToLevelUp(this.scoreMulitplayer +4))
-      this.scoreMulitplayer++;
+    if (this.levelScore >= this.getNextPointToLevelUp(this.scorePerEat +4)){
+      this.scorePerEat++;
+      this.levelScore = 0;
+    }
   }
 
   // Use Fibonacii sequence to define next points level to progress the game 
