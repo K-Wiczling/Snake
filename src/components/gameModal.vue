@@ -1,6 +1,7 @@
 <template>
     <div id="game-modal" >
-        <button @click="startGame">startGame</button>
+        <p>{{ message }}</p>
+        <button @click="startGame">Start Game</button>
     </div>
 </template>
 
@@ -10,6 +11,9 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
     name: 'gameModal',
+    props: {
+        message: String
+    },
     methods: {
         startGame() {
             this.$emit('startGame');
@@ -21,6 +25,7 @@ export default defineComponent({
 
 <style>
 #game-modal {
+    color: White;
     position: fixed;
     top: 0;
     left: 0;
@@ -28,13 +33,20 @@ export default defineComponent({
     height: 100vh;
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.7);
-    padding-top: 45vh;
+    padding-top: 40vh;
+}
+p{
+    font-size: 2rem;
+    padding-bottom: 20px
 }
 button{
-    width: 40vw;
+    width: 30vw;
     height: 50px;
-
+    background-color: #11f100;
     margin: auto;
-
+    font-size: 1.5rem;
+}
+button:hover{
+    background-color: #0b9743;
 }
 </style>

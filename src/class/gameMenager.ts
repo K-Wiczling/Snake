@@ -24,6 +24,7 @@ export default class GameMenager {
   minRefreshTimer: number = 80; // 80 [ms] 
   controlsListener: any;
   gameSize: number = 40;
+  message: string = 'Hallo :)';
 
   // Initialize everything
   init(canvasRef: any) {
@@ -70,14 +71,18 @@ export default class GameMenager {
 
   // Start playing the game
   start() {
+    this.snake.isSnakeAlive = true;
     this.setup();
     this.gameLoop();
-    this.snake.isSnakeAlive = true;
+    dispatchEvent(new CustomEvent('startGame'));
+
+    
   }
 
   // Call whene Snake will hit the wall or tail
   endGame() {
     clearTimeout(this.updateing);
+    this.message = `You die, Your score is: ${this.score.score}`;
     dispatchEvent(new CustomEvent('endGame'));
   }
 

@@ -12,9 +12,7 @@ class CanvasMenager {
 
   gameSize: number = 40;
 
-  // colorBackground: Color = new Color(255,255,255);
-  // colorMain: Color = new Color(0,0,0);
-  colorBackground: Color = new Color(93,50,0);
+  colorBackground: Color = new Color(0,0,0);
   colorMain: Color = new Color(30,225,0);
 
   constructor(canvas: HTMLElement, gameSize: number) {
