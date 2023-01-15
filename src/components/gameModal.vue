@@ -49,4 +49,9 @@ button{
 button:hover{
     background-color: #0b9743;
 }
+@media (max-width: 850px){
+    button{
+        width: 80%;
+    }
+}
 </style>
